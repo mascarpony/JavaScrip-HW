@@ -1,0 +1,46 @@
+// Реализация того же через React: компоненты, элементы, пропсы(props) и состояние(state)
+
+///////////////////////////////////////////////// -- 7.(счетчик)-- /////////////////////////////////////////////////
+class Counter extends React.Component {
+  constructor(props) {
+    super(props); //обращаемся к базовому конструктору
+    this.state = {value: props.value}; //обновляем текущее состояние
+  }
+
+  //3.монтаж: установка таймера
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.decrement(), //вызываем метод уменьшения значения раз в секунду
+      1000
+    );
+  }
+//5.демонтаж (при удалении компонента)
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+//4. вызываем tick
+ decrement = () => {
+    const { value } = this.state;
+   if(value!=0){
+    return this.setState({ value: value - 1 });
+   }
+   else{
+    clearInterval(this.timerID);
+   }
+  };
+ 
+//2.React вызывает после конструктора, получает, что нужно отобразить на экране
+  render() {
+    return (
+      <div>
+        <h1>Привет, мир!</h1>
+        <h2>Сейчас {this.state.value}.</h2>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Counter value={20}/>, //вызываем конструктор компонента Counter, там формируется в state текущее значение
+  document.getElementById('root')
+);
