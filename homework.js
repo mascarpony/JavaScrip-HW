@@ -47,10 +47,37 @@ function deleteKeyValue(object, key) {
 console.log(deleteKeyValue(object,['a', 'c']));
 
 //4 task
+function removeFalsyValues(array) {
+  
+  for (let i = 0; i < array.length; i ++)
+      if (array[i] == false) {
+        array.splice(i,1);
+        i--;
+      }
+  
+  return array;
+}
+
+console.log(removeFalsyValues([2, 0, false, 'key']));
 
 //5 task
 
 //6 task
+function capitalFirstLetter(oldString) {
+  
+  let array = oldString.split(" ");
+  let newString = "";
+  
+  for (let i = 0; i < array.length; i++) {
+    let newLetter = array[i][0].toUpperCase();
+    
+    newString += newLetter + array[i].substr(1) + " ";
+  }
+  
+  return newString;
+}
+
+console.log(capitalFirstLetter("luke, i'm your father"));
 
 //7 task
 
