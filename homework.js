@@ -94,6 +94,19 @@ function numberPerSecond(number) {
 numberPerSecond(2);
 
 //8 task
+var objectOne = {
+  a: 8,
+  b: 3
+};
+
+var objectTwo = {
+  d: 1, 
+  b: null, 
+  kosmo: 'stars'
+};
+
+var objectThree = Object.assign({}, objectOne, objectTwo);
+console.log(objectThree); 
 
 //9 task
 function currentDate() {
