@@ -1,0 +1,39 @@
+// Реализация того же через React: компоненты, элементы, пропсы(props) и состояние(state)
+
+///////////////////////////////////////////////// -- 9.(текущая дата)-- /////////////////////////////////////////////////
+class Time extends React.Component {
+  constructor(props) {
+    super(props); //обращаемся к базовому конструктору
+    this.state = {date: new Date()}; //обновляем текущее состояние
+  }
+
+  //3.монтаж: установка таймера
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(), //вызываем метод уменьшения значения раз в секунду
+      1000
+    );
+  }
+//5.демонтаж (при удалении компонента)
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+//4. вызываем tick
+ tick = () => {
+    return this.setState({ date: new Date() });
+   };
+ 
+//2.React вызывает после конструктора, получает, что нужно отобразить на экране
+  render() {
+    return (
+      <div>
+        <h2>Сейчас {this.state.date.getDay()+"."+((this.state.date.getMonth())+1)+"."+this.state.date.getYear()%100+" "+this.state.date.getHours()+":"+this.state.date.getMinutes()}</h2>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Time />, //вызываем конструктор компонента Counter, там формируется в state текущее значение
+  document.getElementById('root')
+);

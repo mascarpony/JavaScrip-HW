@@ -1,0 +1,43 @@
+class Convert extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true,value:props.value,new_value:[]};
+    // Эта привязка обязательна для работы `this` в колбэке.
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(state => ({
+      isToggleOn: !state.isToggleOn,
+      new_value: this.makeArr(state.value)
+    }));
+  }
+  makeArr(num){
+  let arr  = String(num).split("");
+  let new_arr=[];
+  for (let i in arr){
+    new_arr[i] = Number(arr[i]);
+  }
+  return new_arr;
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>{this.state.isToggleOn ? this.state.value:
+            <ul>{this.state.new_value.map((number) =>
+               <li key={number.toString()}>{number}</li>)}
+          </ul>}
+        </h1>
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'Конвертировать' : 'Вернуть'}
+      </button>
+     </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Convert value='192837'/>,
+  document.getElementById('root')
+);
