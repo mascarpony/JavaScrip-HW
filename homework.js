@@ -61,6 +61,33 @@ function removeFalsyValues(array) {
 console.log(removeFalsyValues([2, 0, false, 'key']));
 
 //5 task
+var _ = require("lodash");
+
+var one = { 
+  a: { 
+    b: 2
+  } 
+};
+
+var two = { 
+  a: { 
+    b: 2
+  } 
+};
+
+var three = { 
+  a: { 
+    c: 2
+  } 
+};
+
+function deepComparison(valueOne, valueTwo) {
+  console.log(_.isEqual(valueOne, valueTwo));
+}
+
+deepComparison(2, 4); // false
+deepComparison(one, two); // true
+deepComparison(one, three); // false
 
 //6 task
 function capitalFirstLetter(oldString) {
